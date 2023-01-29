@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript clock</title>
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        .clock{
+            padding: 5rem;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.731);
+            color: black;
+            text-align: center;
+        }
+        .clock-time{
+            font-size: 3rem;
+            font-weight: bolder;
+            background: linear-gradient(90deg, rgba(16,176,128,1) 0%, rgba(4,30,254,1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: 5px solid rgba(4,30,254,1);
+            padding: .5rem 1rem;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <h1>Javascript Clock</h1>
+        <h1 class="clock-time"><span class="time">12 : 45 : 34</span><span class="mode"></span></h1>
+    </div>
+    
+    <script>
+        let time = document.querySelector(".time");
+        let mode = document.querySelector('.mode');
+
+        setInterval(() => {
+            let date = new Date();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            mode.innerHTML = "AM"
+            if (h == 0) {
+                h = 12;
+            }
+            if (h > 12) {
+                h = h - 12;
+                mode.innerHTML = "PM"
+            }
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+            time.innerHTML = ` ${h} : ${m} : ${s} `
+            }, 1000);
+    </script>
+
+</body>
+</html>
